@@ -25,11 +25,13 @@ COPY . .
 # Chạy Composer
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
-# Cấp quyền
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# Cấp quyền (Mở rộng quyền ghi 777 cho thư mục log để tránh lỗi Permission denied)
+RUN chmod -R 777 storage bootstrap/cache
 
 EXPOSE 80
 
-# --- SỬA ĐỔI QUAN TRỌNG: Dùng dấu ; thay vì && ---
-# Dù migrate có thất bại thì web vẫn sẽ khởi động lên (Live)
-CMD bash -c "php artisan migrate --force; apache2-foreground"
+# --- SỬA ĐỔI QUAN TRỌNG: Tự động fix quyền sau khi migrate ---
+# 1. Chạy migrate
+# 2. Cấp lại quyền cho file log vừa sinh ra (để tránh lỗi Permission denied)
+# 3. Khởi động Apache
+CMD bash -c "php artisan migrate --force; chmod -R 777 storage/logs; apache2-foreground"
