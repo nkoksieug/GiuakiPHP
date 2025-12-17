@@ -30,6 +30,6 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 
 EXPOSE 80
 
-# --- CẬP NHẬT MỚI: TỰ ĐỘNG CHẠY MIGRATE VÀ START SERVER ---
-# Dòng này giúp bạn bỏ qua bước dùng Shell
-CMD bash -c "php artisan migrate --force && apache2-foreground"
+# --- SỬA ĐỔI QUAN TRỌNG: Dùng dấu ; thay vì && ---
+# Dù migrate có thất bại thì web vẫn sẽ khởi động lên (Live)
+CMD bash -c "php artisan migrate --force; apache2-foreground"
