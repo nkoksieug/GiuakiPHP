@@ -13,8 +13,6 @@
             <div class="card-body">
                 <form action="{{ route('tasks.store') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="user_id" value="1">
-
                     <div class="mb-3">
                         <label class="form-label">Tên công việc</label>
                         <input type="text" name="title" class="form-control" required>

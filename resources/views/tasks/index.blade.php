@@ -76,4 +76,12 @@
         </div>
     </div>
 </body>
+<nav class="navbar navbar-light bg-light mb-4 px-3 d-flex justify-content-between">
+    <span class="navbar-brand mb-0 h1">Xin chào, {{ Auth::user()->name }}</span>
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="btn btn-outline-danger">Đăng Xuất</button>
+    </form>
+</nav>
+
 </html>
