@@ -6,14 +6,14 @@
     <title>Quản Lý Công Việc</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<nav class="navbar navbar-light bg-light mb-4 px-3 d-flex justify-content-between">
+<body class="bg-light">
+    <nav class="navbar navbar-light bg-light mb-4 px-3 d-flex justify-content-between">
     <span class="navbar-brand mb-0 h1">Xin chào, {{ Auth::user()->name }}</span>
     <form action="{{ route('logout') }}" method="POST">
         @csrf
         <button type="submit" class="btn btn-outline-danger">Đăng Xuất</button>
     </form>
 </nav>
-<body class="bg-light">
     <div class="container mt-5">
         <h2 class="text-center mb-4">Danh Sách Công Việc</h2>
 
